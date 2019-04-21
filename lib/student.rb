@@ -45,11 +45,11 @@ class Student
         SELECT * FROM students WHERE name = ? LIMIT 1
       SQL
     
-    student = nil  
+      
     DB[:conn].execute(sql, name).map do |row|
-      student = Student.new(row[1], row[2], row[0])
+      new_from_db(row)
     end.first
-    student
+    
   end
   
   def save
